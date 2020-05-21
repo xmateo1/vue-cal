@@ -224,6 +224,7 @@ export default {
     specialHours: { type: Object, default: () => ({}) },
     splitDays: { type: Array, default: () => [] },
     startWeekOnSunday: { type: Boolean, default: false },
+    startWeekOn: { type: [String, Date], default: '' },
     stickySplitLabels: { type: Boolean, default: false },
     time: { type: Boolean, default: true },
     timeCellHeight: { type: Number, default: 40 }, // In pixels.
@@ -446,7 +447,7 @@ export default {
           break
         }
         case 'week': {
-          date = ud.getPreviousFirstDayOfWeek(date, this.startWeekOnSunday)
+          date = (this.startWeekOn && this.startWeekOn instanceof Date) ? this.startWeekOn : ud.getPreviousFirstDayOfWeek(date, this.startWeekOnSunday)
           const weekDaysCount = this.hideWeekends ? 5 : 7
           this.view.startDate = this.hideWeekends && this.startWeekOnSunday ? ud.addDays(date, 1) : date
           this.view.startDate.setHours(0, 0, 0, 0)
@@ -1191,8 +1192,12 @@ export default {
         ...(weekDaysShort.length ? { short: weekDaysShort[i] } : {}),
         hide: (this.hideWeekends && i >= 5) || (this.hideWeekdays.length && this.hideWeekdays.includes(i + 1))
       }))
-
-      if (this.startWeekOnSunday) weekDays.unshift(weekDays.pop())
+      if (this.startWeekOn && this.startWeekOn instanceof Date) {
+        for (let i = 0; i < this.startWeekOn.getDay() - 1; i++) {
+          weekDays.push(weekDays.shift())
+        }
+      }
+      else if (this.startWeekOnSunday) weekDays.unshift(weekDays.pop())
 
       return weekDays
     },

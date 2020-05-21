@@ -10,7 +10,7 @@ div.test-view
     :time-from="7 * 60"
     :time-to="23 * 60"
     :disable-views="['years', 'year']"
-    hide-weekends
+    :startWeekOn="new Date().addDays(1)"
     editable-events
     :events="events"
     :active-view.sync="view"
