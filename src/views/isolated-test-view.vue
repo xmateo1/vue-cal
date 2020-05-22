@@ -11,6 +11,7 @@ div.test-view
     :time-to="23 * 60"
     :disable-views="['years', 'year']"
     :startWeekOn="new Date().addDays(1)"
+    :disableDates="[new Date().addDays(1), new Date().addDays(3)]"
     editable-events
     :events="events"
     :active-view.sync="view"
@@ -69,6 +70,9 @@ export default {
 .vuecal__event {
   background-color: rgba(160, 220, 255, 0.5);
   border: 1px solid rgba(0, 100, 150, 0.15);
+}
+.vuecal__cell--disabled {
+  background-color: #dfdfdf;
 }
 
 // Global.

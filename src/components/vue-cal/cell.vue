@@ -220,9 +220,18 @@ export default {
     isAfterMaxDate () {
       return this.maxTimestamp && this.maxTimestamp < this.data.startDate.getTime()
     },
+    isInDisabledOption () {
+      return this.options.disableDates.filter(
+        // events with same or earlier start and ending after start
+        (date) =>
+          date.getFullYear() === this.data.startDate.getFullYear() &&
+          date.getMonth() === this.data.startDate.getMonth() &&
+          date.getDate() === this.data.startDate.getDate()
+      ).length
+    },
     // Is the current cell disabled or not.
     isDisabled () {
-      return this.isBeforeMinDate || this.isAfterMaxDate
+      return this.isBeforeMinDate || this.isAfterMaxDate || this.isInDisabledOption
     },
     // Is the current cell selected or not.
     isSelected: {
