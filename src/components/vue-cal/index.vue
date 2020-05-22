@@ -196,6 +196,7 @@ export default {
     dblclickToNavigate: { type: Boolean, default: true },
     disableDatePrototypes: { type: Boolean, default: false },
     disableDates: { type: Array, default: () => [] }, // Date types
+    disableDatesClass: { type: String, default: '' },
     disableViews: { type: Array, default: () => [] },
     editableEvents: { type: [Boolean, Object], default: false },
     events: { type: Array, default: () => [] },

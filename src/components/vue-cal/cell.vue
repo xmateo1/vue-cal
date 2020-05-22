@@ -231,7 +231,7 @@ export default {
     },
     // Is the current cell disabled or not.
     isDisabled () {
-      return this.isBeforeMinDate || this.isAfterMaxDate || this.isInDisabledOption
+      return this.isBeforeMinDate || this.isAfterMaxDate || (this.isInDisabledOption && this.options.disableDatesClass === '')
     },
     // Is the current cell selected or not.
     isSelected: {
@@ -345,7 +345,8 @@ export default {
         'vuecal__cell--selected': this.isSelected,
         'vuecal__cell--highlighted': this.highlighted,
         'vuecal__cell--has-splits': this.splitsCount,
-        'vuecal__cell--has-events': this.eventsCount
+        'vuecal__cell--has-events': this.eventsCount,
+        [this.options.disableDatesClass]: this.isInDisabledOption && this.options.disableDatesClass !== ''
       }
     },
     cellStyles () {

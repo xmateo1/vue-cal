@@ -12,6 +12,7 @@ div.test-view
     :disable-views="['years', 'year']"
     :startWeekOn="new Date().addDays(1)"
     :disableDates="[new Date().addDays(1), new Date().addDays(3)]"
+    disableDatesClass="muted"
     editable-events
     :events="events"
     :active-view.sync="view"
