@@ -10,7 +10,7 @@ div.test-view
     :time-from="7 * 60"
     :time-to="23 * 60"
     :disable-views="['years', 'year']"
-    :startWeekOn="new Date().addDays(1)"
+    :startWeekOn="new Date().addDays(3)"
     :disableDates="[new Date().addDays(1), new Date().addDays(3)]"
     disableDatesClass="muted"
     editable-events

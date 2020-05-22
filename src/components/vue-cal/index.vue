@@ -1195,8 +1195,14 @@ export default {
         hide: (this.hideWeekends && i >= 5) || (this.hideWeekdays.length && this.hideWeekdays.includes(i + 1))
       }))
       if (this.startWeekOn && this.startWeekOn instanceof Date) {
-        for (let i = 0; i < this.startWeekOn.getDay() - 1; i++) {
-          weekDays.push(weekDays.shift())
+        const moveFor = this.startWeekOn.getDay() - 1
+        for (var i = 0; i < Math.abs(moveFor); i++) {
+          if (moveFor < 0) {
+            weekDays.unshift(weekDays.pop())
+          }
+          else {
+            weekDays.push(weekDays.shift())
+          }
         }
       }
       else if (this.startWeekOnSunday) weekDays.unshift(weekDays.pop())
